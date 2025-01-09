@@ -115,13 +115,6 @@ If you'd like to contribute to this project, feel free to fork the repository an
 - Improve the application’s documentation.
 - Report any issues you encounter.
 
-## License
+## Project
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-For any questions or suggestions, feel free to reach out to:
-
-**Your Name**  
-Email: [your.email@example.com](mailto:your.email@example.com)
+Project taken from [https://roadmap.sh/projects/tmdb-cli](https://roadmap.sh/projects/tmdb-cli)
