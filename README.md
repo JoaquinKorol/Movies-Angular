@@ -95,26 +95,6 @@ dotnet run --type "top"
 dotnet run --type "upcoming"
 ```
 
-## Error Handling
-
-- If you do not provide a valid movie type or an unsupported value, the application will display an error message.
-- Ensure that your TMDB API Key is correctly set in the `appsettings.json` file to avoid authentication errors.
-
-## Dependencies
-
-This application relies on the following dependencies:
-
-- **TMDB API**: For retrieving movie data.
-- **.NET SDK**: To build and run the application.
-
-## Contributing
-
-If you'd like to contribute to this project, feel free to fork the repository and submit pull requests. Here are a few ways you can contribute:
-
-- Fix bugs or add new features.
-- Improve the application’s documentation.
-- Report any issues you encounter.
-
 ## Project
 
 Project taken from [https://roadmap.sh/projects/tmdb-cli](https://roadmap.sh/projects/tmdb-cli)
