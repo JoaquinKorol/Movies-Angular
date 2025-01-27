@@ -110,6 +110,35 @@ namespace TMDB_CLI_Tool.Helpers
         {
             return await GetMoviesAsync("https://api.themoviedb.org/3/movie/upcoming?language=es-MX&page=1&region=AR");
         }
+        public static async Task<Movie> GetMovieDetailsAsync(int movieId)
+        {
+            var movieOptions = new RestClientOptions($"https://api.themoviedb.org/3/movie/{movieId}?language=es-ES");
+            var movieClient = new RestClient(movieOptions);
+            var movieRequest = new RestRequest("");
+            movieRequest.AddHeader("accept", "application/json");
+            movieRequest.AddHeader("Authorization", $"Bearer {BearerToken}");
+
+            try
+            {
+                var movieResponse = await movieClient.GetAsync(movieRequest);
+                if (movieResponse.IsSuccessful)
+                {
+                    // Deserializamos la respuesta a un objeto MovieDetail
+                    var movieDetail = JsonConvert.DeserializeObject<Movie>(movieResponse.Content);
+                    return movieDetail;
+                }
+                else
+                {
+                    Console.WriteLine("Error fetching movie details: " + movieResponse.StatusCode);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred: " + ex.Message);
+                return null;
+            }
+        }
 
         public static void ShowMovies(List<Movie> movies)
         {

@@ -1,0 +1,12 @@
+<header>
+    <img src="/logo/logo2.png" (click)="onCategorySelect(''); scrollToTop()" class="logo"> 
+
+    <nav>
+        <ul>
+            <a [routerLink]="'/nowPlaying'" (click)="scrollToTop(); onCategorySelect('nowPlaying')">Ahora en Cines</a>
+            <a [routerLink]="'/popular'" (click)="onCategorySelect('popular')">Populares</a>
+            <a [routerLink]="'/upcoming'" (click)="onCategorySelect('upcomingMovies')">Proximamente</a>
+            <a [routerLink]="'/topRated'" (click)="onCategorySelect('topRated')">Mas Valoradas</a>
+        </ul>
+    </nav>
+</header>

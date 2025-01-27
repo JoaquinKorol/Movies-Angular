@@ -1,0 +1,17 @@
+<div *ngIf="movieDetail">
+    <h1>{{ movieDetail.title }}</h1>
+    <div>
+      <img [src]="'https://image.tmdb.org/t/p/w500' + movieDetail.poster_path" alt="{{ movieDetail.title }}" />
+    </div>
+    <div>
+      <p>{{ movieDetail.overview }}</p>
+      <p><strong>Fecha de lanzamiento:</strong> {{ movieDetail.release_date | date: 'dd-MM-yyyy' }}</p>
+      <p><strong>Promedio de votos:</strong> {{ movieDetail.vote_average }} / 10</p>
+      <p><strong>Duración:</strong> {{ movieDetail.runtime }} minutos</p>
+      <p><strong>Géneros:</strong> 
+        <span *ngFor="let genre of movieDetail.genres">
+          {{ genre.name }} 
+        </span>
+      </p>
+    </div>
+  </div>

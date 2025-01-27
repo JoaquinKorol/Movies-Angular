@@ -1,0 +1,241 @@
+<app-header (categorySelected)="onCategorySelected($event)" ></app-header>
+
+
+<div class="container" *ngIf="category === ''">
+    <!-- Mostrar las primeras 4 películas por defecto -->
+    <div class="movie-section">
+        <ul>
+            <li *ngFor="let movie of nowPlayngMovies | slice:0:3">
+                <div class="movie-item">
+                    <div 
+                        class="movie-poster-container" 
+                        [routerLink]="['/movie', movie.id]" 
+                        style="cursor: pointer;">
+                        <div 
+                            [style.background-image]="'url(https://image.tmdb.org/t/p/w1280/' + movie.poster_path + ')'" 
+                            class="movie-poster">
+                        </div>
+                        <div class="movie-overlay">
+                            <p>🎬{{ movie.title }}</p>
+                            <p>
+                                <span [ngStyle]="{'color': getRatingColor(movie.vote_average)}">
+                                    ⭐{{ movie.vote_average.toFixed(1) }}
+                                </span>
+                                <span style="color: green;">/10</span>
+                            </p>
+                            <p>📅{{movie.release_date | date: 'dd-MM-yyyy'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Repetir el mismo formato para otras categorías -->
+    <div class="movie-section">
+        <ul>
+            <li *ngFor="let movie of popularMovies | slice:0:3">
+                <div class="movie-item">
+                    <div class="movie-poster-container">
+                        <div 
+                            [style.background-image]="'url(https://image.tmdb.org/t/p/w1280/' + movie.poster_path + ')'" 
+                            class="movie-poster">
+                        </div>
+                        <div class="movie-overlay">
+                            <p>🎬{{ movie.title }}</p>
+                            <p>
+                                <span [ngStyle]="{'color': getRatingColor(movie.vote_average)}">
+                                    ⭐{{ movie.vote_average.toFixed(1) }}
+                                </span>
+                                <span style="color: green;">/10</span>
+                            </p>
+                            <p>📅{{movie.release_date | date: 'dd-MM-yyyy'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="movie-section">
+        <ul>
+            <li *ngFor="let movie of topRatedMovies | slice:0:3">
+                <div class="movie-item">
+                    <div class="movie-poster-container">
+                        <div 
+                            [style.background-image]="'url(https://image.tmdb.org/t/p/w1280/' + movie.poster_path + ')'" 
+                            class="movie-poster">
+                        </div>
+                        <div class="movie-overlay">
+                            <p>🎬{{ movie.title }}</p>
+                            <p>
+                                <span [ngStyle]="{'color': getRatingColor(movie.vote_average)}">
+                                    ⭐{{ movie.vote_average.toFixed(1) }}
+                                </span>
+                                <span style="color: green;">/10</span>
+                            </p>
+                            <p>📅{{movie.release_date | date: 'dd-MM-yyyy'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="movie-section">
+        <ul>
+            <li *ngFor="let movie of upcomingMovies | slice:0:3">
+                <div class="movie-item">
+                    <div class="movie-poster-container">
+                        <div 
+                            [style.background-image]="'url(https://image.tmdb.org/t/p/w1280/' + movie.poster_path + ')'" 
+                            class="movie-poster">
+                        </div>
+                        <div class="movie-overlay">
+                            <p>🎬{{ movie.title }}</p>
+                            <p>
+                                <span [ngStyle]="{'color': getRatingColor(movie.vote_average)}">
+                                    ⭐{{ movie.vote_average.toFixed(1) }}
+                                </span>
+                                <span style="color: green;">/10</span>
+                            </p>
+                            <p>📅{{movie.release_date | date: 'dd-MM-yyyy'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Mostrar las películas según la categoría seleccionada -->
+<div *ngIf="category !== ''" class="container">
+    
+    <div *ngIf="category === 'nowPlaying'"class="movie-section caca">
+        <div class="scrolling-container">
+            <div class="scrolling-text">
+                <h1>Ahora en Cines</h1>
+                <h1>Ahora en Cines</h1>
+                <h1>Ahora en Cines</h1>
+            </div>
+        </div>
+        <ul>
+            <li *ngFor="let movie of nowPlayngMovies">
+                <div class="movie-item" *ngIf="isValidPoster(movie.poster_path)">
+                    <div class="movie-poster-container">
+                        <div 
+                        [style.background-image]="'url(https://image.tmdb.org/t/p/w1280/' + movie.poster_path + ')'" 
+                        class="movie-poster">
+                        </div>
+                        <div class="movie-overlay">
+                            <p>🎬{{ movie.title }}</p>
+                            <p>
+                                <span [ngStyle]="{'color': getRatingColor(movie.vote_average)}">
+                                  ⭐{{ movie.vote_average.toFixed(1) }}
+                                </span>
+                                <span style="color: green;">/10</span> <!-- Siempre verde -->
+                            </p>
+                            <p>📅{{movie.release_date | date: 'dd-MM-yyyy'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div *ngIf="category === 'popular'"class="movie-section caca">
+        <div class="scrolling-container">
+            <div class="scrolling-text">
+                <h1>Populares</h1>
+                <h1>Populares</h1>
+                <h1>Populares</h1>
+            </div>
+        </div>
+        <ul>
+            <li *ngFor="let movie of popularMovies">
+                <div class="movie-item" *ngIf="isValidPoster(movie.poster_path)">
+                    <div class="movie-poster-container">
+                        <div 
+                        [style.background-image]="'url(https://image.tmdb.org/t/p/w1280/' + movie.poster_path + ')'" 
+                        class="movie-poster">
+                        </div>
+                        <div class="movie-overlay">
+                            <p>🎬{{ movie.title }}</p>
+                            <p>
+                                <span [ngStyle]="{'color': getRatingColor(movie.vote_average)}">
+                                  ⭐{{ movie.vote_average.toFixed(1) }}
+                                </span>
+                                <span style="color: green;">/10</span> <!-- Siempre verde -->
+                            </p>
+                            <p>📅{{movie.release_date | date: 'dd-MM-yyyy'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div *ngIf="category === 'upcomingMovies'"class="movie-section caca">
+        <div class="scrolling-container">
+            <div class="scrolling-text">
+                <h1>Proximos Estrenos</h1>
+                <h1>Proximos Estrenos</h1>
+                <h1>Proximos Estrenos</h1>
+            </div>
+        </div>
+        <ul>
+            <li *ngFor="let movie of upcomingMovies">
+                <div class="movie-item" *ngIf="isValidPoster(movie.poster_path)">
+                    <div class="movie-poster-container">
+                        <div 
+                        [style.background-image]="'url(https://image.tmdb.org/t/p/w1280/' + movie.poster_path + ')'" 
+                        class="movie-poster">
+                        </div>
+                        <div class="movie-overlay">
+                            <p>🎬{{ movie.title }}</p>
+                            <p>
+                                <span [ngStyle]="{'color': getRatingColor(movie.vote_average)}">
+                                  ⭐{{ movie.vote_average.toFixed(1) }}
+                                </span>
+                                <span style="color: green;">/10</span> <!-- Siempre verde -->
+                            </p>
+                            <p>📅{{movie.release_date | date: 'dd-MM-yyyy'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div *ngIf="category === 'topRated'"class="movie-section caca">
+        <div class="scrolling-container">
+            <div class="scrolling-text">
+                <h1>Mejores Peliculas</h1>
+                <h1>Mejores Peliculas</h1>
+                <h1>Mejores Peliculas</h1>
+            </div>
+        </div>
+        <ul>
+            <li *ngFor="let movie of topRatedMovies">
+                <div class="movie-item" *ngIf="isValidPoster(movie.poster_path)">
+                    <div class="movie-poster-container">
+                        <div 
+                        [style.background-image]="'url(https://image.tmdb.org/t/p/w1280/' + movie.poster_path + ')'" 
+                        class="movie-poster">
+                        </div>
+                        <div class="movie-overlay">
+                            <p>🎬{{ movie.title }}</p>
+                            <p>
+                                <span [ngStyle]="{'color': getRatingColor(movie.vote_average)}">
+                                  ⭐{{ movie.vote_average.toFixed(1) }}
+                                </span>
+                                <span style="color: green;">/10</span> <!-- Siempre verde -->
+                            </p>
+                            <p>📅{{movie.release_date | date: 'dd-MM-yyyy'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
