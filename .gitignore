@@ -5,6 +5,7 @@ out/
 .vs/
 .idea/
 .vscode/
+AppSettings.json
 **/Properties/launchSettings.json
 *.user
 *.suo
