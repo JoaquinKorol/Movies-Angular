@@ -1,4 +1,4 @@
-a# TMDB CLI Tool
+# TMDB CLI Tool
 
 This is a Command Line Interface (CLI) application that allows you to interact with the TMDB (The Movie Database) API to retrieve movie information.
 
